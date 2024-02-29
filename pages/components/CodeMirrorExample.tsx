@@ -1,15 +1,18 @@
 import CodeMirror from '@uiw/react-codemirror';
 import { historyField } from '@codemirror/commands';
 import { python } from '@codemirror/lang-python';
+import { useEffect, useState } from 'react';
 
-
-// When custom fields should be serialized, you can pass them in as an object mapping property names to fields.
-// See [toJSON](https://codemirror.net/docs/ref/#state.EditorState.toJSON) documentation for more details
 const stateFields = { history: historyField };
 
 export default function EditorWithInitialState() {
-  const serializedState = localStorage.getItem('myEditorState');
-  const value = localStorage.getItem('myValue') || '';
+  const [myEditorState, setMyEditorState] = useState<string | false | null>(null);
+  let serializedState = '';
+
+  useEffect(() => {
+      const serializedState = typeof window !== 'undefined' && window.localStorage.getItem('myEditorState');
+      setMyEditorState(serializedState);
+  }, []);
 
   const exercise =`
 # Exercise: Working with dictionaries in Python

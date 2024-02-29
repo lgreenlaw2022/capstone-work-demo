@@ -23,7 +23,10 @@ const HomePage: AppType = () => {
           <CodeMirrorExample/>
         </div>
 
-        <MonacoExample/>
+        <div >
+          <h3>Monaco Example</h3>
+          <MonacoExample/>
+        </div>
         
         <div>
           <h3>Code Sandbox Example</h3>
